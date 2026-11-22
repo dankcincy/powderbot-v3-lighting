@@ -1,0 +1,28 @@
+name: Build question
+description: Ask about a guide step, connection or observation
+title: "[Question] "
+labels: [question]
+body:
+  - type: input
+    id: section
+    attributes:
+      label: Guide section
+      description: Link the page or name the step you are following.
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: What do you need help with?
+    validations:
+      required: true
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Hardware and firmware
+      description: Board labels, converter identity, sketch version and any substitutions.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Photos, measurements and observations
+      description: Drag photos here. Include both endpoints and legible pin labels. State whether power was connected.

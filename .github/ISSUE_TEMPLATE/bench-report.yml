@@ -1,0 +1,28 @@
+name: Bench report
+description: Record a reproducible check and its outcome
+title: "[Bench] "
+labels: [bench-report]
+body:
+  - type: textarea
+    id: setup
+    attributes:
+      label: Date, hardware, firmware and environment
+    validations:
+      required: true
+  - type: textarea
+    id: procedure
+    attributes:
+      label: Connections and steps performed
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and observed results
+      description: Include raw serial output, photos and measurements where relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: open
+    attributes:
+      label: Open questions and checks still to perform
