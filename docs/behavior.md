@@ -1,37 +1,20 @@
-# Understanding the lights
-
-> Scope: this page documents the preserved v1_13 passive-lighting baseline. It does not describe the later stock-BLE replacement. See the [bridge recovery checkpoint](evidence/bridge-recovery.md) for the corrected target and separate pin maps.
+# Lighting behavior
 
 [Guide home](index.md)
 
-| Condition | Full-mode display |
-| --- | --- |
-| Startup while disconnected without a target | Brief red startup sequence |
-| BLE connects | Blue wake animation |
-| Connected, waiting for target | Breathing red center ember |
-| New target arrives | Red acknowledgement, then armed heartbeat |
-| Two consecutive parsed weights at or above 1.00 gn | Running red scanner |
-| Accepted result within tolerance | Green bloom, then green hold |
-| Accepted result outside tolerance | Red pulse, then red hold |
-| Cup removal after a result | Result-color wipe, then re-arm with the same target |
-| Stop | Captured result-color collapse, or red center pinch without a result |
-| BLE disconnects | Blue collapse and target/run reset |
+The reproduction combines bridge events and observed scale readings with status lighting. The first merge skeleton includes separate engine, presentation and NeoPixel-rendering modules, connected to communications callbacks for BLE connection changes, parsed app commands and scale samples. See [source references](evidence/bridge-recovery.md#inspected-source-sequence).
 
-## Result calculation
+The exact animation sequence, result thresholds, timing and disconnect behavior of the selected merged build still need to be verified. The standalone BLE bridge does not itself drive the lights.
 
-The sketch uses four qualifying stable (`ST`) readings. Their maximum-minus-minimum spread must be at most 0.04 gn. Their average is compared with the target using a tolerance of 0.02 gn. Accepted later windows can change the displayed verdict.
+## Behavior to establish in the merged baseline
 
-Before the first decision, an ST reading more than 0.08 gn below target clears the window. There is no corresponding upper gate. Unstable (`US`) readings do not clear the window, and samples have no age expiry.
+- Startup, BLE connection and disconnection indications.
+- Target receipt and repeated-target handling.
+- Running indication and stable-reading requirements.
+- Within-tolerance and outside-tolerance results, including later verdict changes.
+- Cup removal, re-arming and stop behavior.
+- Stale or missing scale data and reconnect behavior.
 
-Three consecutive parsed readings below 1.00 gn after a decision trigger cup removal. Both ST and US readings count for run-start and removal detection. The target is retained after removal.
+The original V3 remains responsible for dispensing. An LED result is an indication calculated by the selected lighting code; its criteria must be checked against that revision.
 
-## Details that matter when troubleshooting
-
-- A repeated target within 0.0005 gn preserves the current state.
-- Event animations can temporarily cover the base state.
-- A new target cancels queued exit effects, while certain effects already running finish first.
-- Serial-stale reporting logs a warning without clearing the target or verdict.
-- Floating-point comparisons use unrounded values. A printed spread of 0.040 can lie just beyond the internal limit.
-- Minimal mode retains verdict-entry animations and cup-removal wipe.
-
-The [source audit](evidence/source-audit.md) documents parsing, priorities, edge cases and revision differences in detail. These are source findings. Bench observations should identify the exact firmware and assembly tested.
+The earlier v1_13 effects and numerical rules are preserved in the [historical reference](v1_13-reference.md). They are useful comparison evidence, but are not assumed to describe the later merged firmware unchanged.

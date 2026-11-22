@@ -1,43 +1,39 @@
-# Wiring and physical evidence
-
-> Scope: this page documents the preserved v1_13 passive-lighting baseline. It does not describe the later stock-BLE replacement. See the [bridge recovery checkpoint](evidence/bridge-recovery.md) for the corrected target and separate pin maps.
+# Bridge signal paths and wiring evidence
 
 [Guide home](index.md)
 
-## Documented signal map
+The ESP32 replaces the stock BLE module at the V3's serial interface. Its BLE connection serves the phone app; its wired UART serves the V3. Separate converter outputs let it observe the scale readings and V3-to-scale command traffic.
 
-| Source | Destination | Configuration | Evidence |
-| --- | --- | --- | --- |
-| BLE module TX | ESP32 GPIO21 | Receive-only, 9600 baud | Original code and March reports |
-| BLE module STATE | ESP32 GPIO22 | Active high, 30 ms debounce | Code and March 26 reports |
-| MAX3232 R1OUT | ESP32 GPIO35 | UART1 RX, 19200 baud, 8N1 | Code and March 22 report |
-| ESP32 GPIO17 | 330-ohm series resistor, then strip DI | 22 pixels, GRB, 800 kHz | Code and March 23 report |
-| External regulated 5 V | Strip +5V | Actual supply model/rating unresolved | March strip report |
-| ESP32 ground | Strip and strip-supply ground | Common reference required | Code header and March report |
+## Recovered GPIO assignments
 
-The BLE TX label is relative to the module. This is the line carrying app intent toward the V3. The scale input to the ESP32 comes from the converter's logic-side R1OUT. RS-232 and the apparently 5 V ST232C paths require electrical-level review before any ESP32 connection.
+These are source configurations, not a completed wiring diagram or proof of physical continuity.
 
-## Historical connector markings
+| Signal, relative to ESP32 | ESP32 Max-era communications | Bart-board communications |
+| --- | --- | --- |
+| Receive V3 replies | GPIO32 | GPIO34 |
+| Transmit app commands to V3 | GPIO33 | GPIO22 |
+| Observe scale readings | GPIO21 | GPIO32 |
+| Observe V3-to-scale commands | GPIO35 | GPIO33 |
+| V3 UART | 9600 baud | 9600 baud |
+| Scale observation | 19200 baud | 19200 baud |
 
-Reviewed board photos show P6 marked GND/IO16/IO4/IO17, CN1 marked GND/IO22/IO21/3V3, and P3 marked GND/IO35/IO22/IO21. The actual harness connector used in the final assembly remains unresolved.
+The Max-era map appears in `esp32_bt05_v1_11_comms_hub` and `powerbot_comms_v1`. Bart's mapping appears in `powderbot_comms_v1_1` and persists in `v1_2` and the first merge skeleton. `v1_1` contains stale scale-pin comments; executable assignments and `v1_2` agree on GPIO32/33. See [exact source references](evidence/bridge-recovery.md#inspected-source-sequence).
 
-Earlier March prototypes used GPIO22 for translated command chatter. The v1_13 configuration uses that pin for BLE STATE. Check the sketch version before following an older photograph or report.
+The standalone `esp32_bt05_v1_8` only implements the V3 BLE/UART bridge; its source does not provide scale observation or LED output.
 
-## Connections still to establish
+## Signal direction at the former BLE module
 
-- Exact numbered scale-connector contact to MAX3232 R1IN continuity.
-- MAX3232 module identity, VCC source and logic-output voltage.
-- Actual BLE STATE tap location and readable photographs of its endpoints.
-- Complete ESP32/strip power arrangement, supply rating and ground junctions.
-- Exact strip part and physical pad order on the strip being used.
-- Original scale menu settings, independently corroborated for this assembly.
+The stock module's **TXD** path carries commands into the V3. ESP32 **TX** takes over that path. The stock module's **RXD** path carries replies from the V3; ESP32 **RX** receives those replies. Labels are relative to the device, so matching TX labels blindly to RX labels on an unidentified connector can reverse the intended path.
 
-Reviewed DB9 rear-view photos show blue on molded contact 2, green on 3, black on 5 and red on 9. These establish observed contact numbers and colors only. Electrical functions require continuity or documentary confirmation.
+## Connections still to establish for the selected build
 
-## What the videos establish
+- Exact V3 header contacts and logic levels, including power and ground.
+- Scale connector contacts, converter identity, converter supply and logic-output voltage.
+- Complete signal continuity and shared ground arrangement.
+- LED output GPIO, strip supply, pad order and level interface for the selected merged firmware.
+- Scale settings and the complete firmware/dependency configuration.
+- Pin availability and electrical suitability of the eventual smaller ESP32 board.
 
-March 23 and March 26 videos show the translucent rim operating, with red, yellow and dark leads at its entry. Covered junctions and overlapping wires hide the endpoints. Wire color alone cannot close the open connections above.
+Do not reuse the v1_13 wiring table for this bridge. That earlier configuration uses different pins and retains the stock BLE module; it is preserved in the [historical reference](v1_13-reference.md).
 
-Before power-up, attach a proposed wiring diagram and photographs to a wiring-review issue. Every supply, ground and signal endpoint should be identifiable. Resolve the listed electrical uncertainties against that assembly.
-
-Sources are linked in [provenance](provenance.md).
+Photographs establish visible hardware, not hidden continuity, voltages or running firmware. Review an assembly-specific diagram before power-up and record measurements in a bench report.

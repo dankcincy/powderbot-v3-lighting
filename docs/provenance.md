@@ -2,7 +2,7 @@
 
 [Guide home](index.md)
 
-Prepared November 22, 2026 from the recovered March baseline and subsequent read-only research.
+Updated November 22, 2026 from recovered source, historical reports and dated photo observations. The current target is the later BLE bridge plus lighting; v1_13 remains the preserved earlier reference.
 
 | Record | What it supports |
 | --- | --- |
@@ -14,7 +14,7 @@ Prepared November 22, 2026 from the recovered March baseline and subsequent read
 
 These research reports contain historical local source locators. Original DOCX files, IDE logs and phone videos remain in the maintainer's archive. Referenced crops and local artifacts are not bundled in this first publication. Repository documentation is self-contained for the facts summarized here; request a reviewed source excerpt through an issue when deeper inspection is needed.
 
-## Baseline identity
+## Preserved v1_13 identity
 
 Original file `powderbot_personality_v1_13.ino`, 1,499 lines, SHA-256:
 

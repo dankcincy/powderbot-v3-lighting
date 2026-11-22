@@ -1,32 +1,31 @@
-# Software preparation
-
-> Scope: this page documents the preserved v1_13 passive-lighting baseline. It does not describe the later stock-BLE replacement. See the [bridge recovery checkpoint](evidence/bridge-recovery.md) for the corrected target and separate pin maps.
+# Firmware recovery and selection
 
 [Guide home](index.md)
 
-1. Download the repository using GitHub's **Code â†’ Download ZIP**, then extract it.
-2. Open `firmware/powderbot_personality_v1_13/powderbot_personality_v1_13.ino` in Arduino IDE. Keep the sketch inside its matching folder.
-3. Select **ESP32 Dev Module** and prepare the historical dependencies below.
-4. Use **Verify** to compile. Save the complete build output in a bench report. Resolve missing libraries or compilation errors before considering an upload.
-5. Select the actual connected board port only after identifying the board and reviewing its wiring. Historical COM6 is a record of Dan's machine.
+The complete bridge-plus-lights release is still being identified. Downloading this repository currently supplies the earlier v1_13 lighting sketch, not a ready-to-upload BLE replacement.
 
-## Recovered environment
+## Recovered development sequence
 
-| Item | Recorded version or setting |
+| Source revision | Role |
 | --- | --- |
-| Arduino IDE | 2.3.8 |
-| Arduino CLI in historical IDE log | 1.4.1 |
-| ESP32 board package | 3.3.7 |
-| Board | ESP32 Dev Module, `esp32:esp32:esp32` |
-| EspSoftwareSerial | 8.1.0, corroborated by local library metadata |
-| Adafruit NeoPixel | 1.15.4, corroborated by local library metadata |
-| CPU / flash | 240 MHz / 80 MHz, 4 MB |
-| Partitions / PSRAM | Default / disabled |
-| Upload speed | 921600 |
-| Serial Monitor | 115200 baud |
+| `powderbot_personality_v1_13` | Self-contained passive lighting on JC2432W328C; packaged here unchanged |
+| `esp32_bt05_v1_8` | Standalone BT05 BLE replacement; April 1 report identifies it as the working reconnect baseline |
+| `esp32_bt05_v1_11_comms_hub` | Bridge plus scale observation and traffic logging, using Max-era pins |
+| `powerbot_comms_v1` | Modular communications using the same pins |
+| `powderbot_comms_v1_1` | Bart-board GPIO assignments, with two stale scale-pin comments |
+| `powderbot_comms_v1_2` | Corrects those comments and changes module names; same executable behavior as v1_1 after name normalization |
+| `powderbot_merge_v0_1` | First merge skeleton joining communications to engine, presentation and strip-rendering modules |
 
-Historical build options name QIO, while generated flash arguments and packaged image headers specify DIO. Preserve this distinction when reproducing the environment. See the [cache audit](evidence/build-provenance.md).
+The first merge skeleton is not established as the final working build. Later merge revisions must be compared before selecting the reproduction baseline. The [recovery checkpoint](evidence/bridge-recovery.md) gives source locations, line references, fingerprints and confidence limits.
 
-The preserved source uses GPIO21 BLE RX, GPIO22 STATE, GPIO35 scale RX and GPIO17 strip output. It defaults to 22 pixels, brightness 100 and full animation mode. Check [behavior](behavior.md) before changing any constants.
+## What remains before a build package
 
-A fresh compile and upload for this repository package have not been performed. Historical build and upload evidence is recorded separately in provenance.
+1. Select the complete merged revision using source comparisons and historical test evidence.
+2. Recover its board configuration and dependency versions; earlier v1_13 build settings do not establish the bridge environment.
+3. Package the required files together, preserving the archived originals.
+4. Compile the selected package and record the result.
+5. Identify the actual hardware and verify its wiring before an upload or bench test.
+
+No new bridge compile, upload or bench test has been performed for this documentation update. Historical reports are identified separately from current verification.
+
+The earlier sketch's installation instructions, dependencies and build evidence remain in the [v1_13 reference](v1_13-reference.md).
