@@ -1,3 +1,7 @@
 title: PowderBot V3 lighting
 description: A shared reconstruction guide for the original v1_13 setup
 theme: jekyll-theme-cayman
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
