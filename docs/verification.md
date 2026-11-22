@@ -1,5 +1,7 @@
 # Reconstruction check sheet
 
+> Scope: this page documents the preserved v1_13 passive-lighting baseline. It does not describe the later stock-BLE replacement. See the [bridge recovery checkpoint](evidence/bridge-recovery.md) for the corrected target and separate pin maps.
+
 [Guide home](index.md)
 
 Create a **Bench report** issue and record results as you work. The steps below are a review sequence, with power-up dependent on closure of the wiring questions.

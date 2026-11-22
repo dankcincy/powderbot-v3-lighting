@@ -6,6 +6,7 @@ Prepared November 22, 2026 from the recovered March baseline and subsequent read
 
 | Record | What it supports |
 | --- | --- |
+| [Bridge recovery checkpoint](evidence/bridge-recovery.md) | November 22 scope correction, BLE source transition, photo anchors and next investigation |
 | [Source audit](evidence/source-audit.md) | Exact code behavior and v1.8 through v1.13 changes |
 | [Build and upload provenance](evidence/build-provenance.md) | Recovered cache, tool settings and March 26 IDE upload records |
 | [March report index](evidence/march-reports.md) | Historical bench claims, electrical observations and physical gaps |

@@ -1,8 +1,10 @@
 # Software preparation
 
+> Scope: this page documents the preserved v1_13 passive-lighting baseline. It does not describe the later stock-BLE replacement. See the [bridge recovery checkpoint](evidence/bridge-recovery.md) for the corrected target and separate pin maps.
+
 [Guide home](index.md)
 
-1. Download the repository using GitHub's **Code → Download ZIP**, then extract it.
+1. Download the repository using GitHub's **Code â†’ Download ZIP**, then extract it.
 2. Open `firmware/powderbot_personality_v1_13/powderbot_personality_v1_13.ino` in Arduino IDE. Keep the sketch inside its matching folder.
 3. Select **ESP32 Dev Module** and prepare the historical dependencies below.
 4. Use **Verify** to compile. Save the complete build output in a bench report. Resolve missing libraries or compilation errors before considering an upload.

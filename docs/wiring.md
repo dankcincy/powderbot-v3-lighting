@@ -1,5 +1,7 @@
 # Wiring and physical evidence
 
+> Scope: this page documents the preserved v1_13 passive-lighting baseline. It does not describe the later stock-BLE replacement. See the [bridge recovery checkpoint](evidence/bridge-recovery.md) for the corrected target and separate pin maps.
+
 [Guide home](index.md)
 
 ## Documented signal map

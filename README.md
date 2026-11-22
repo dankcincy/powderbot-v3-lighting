@@ -1,6 +1,8 @@
 # PowderBot V3 lighting
 
-A shared workshop guide for reconstructing the March 2026 v1_13 status-lighting setup.
+A shared workshop guide for recovering the PowderBot V3 BLE bridge and status lighting for reproduction on a smaller ESP32.
+
+**Scope correction — November 22, 2026:** the packaged v1_13 sketch is the preserved passive-lighting baseline. It does not replace the V3 Bluetooth module. The intended reconstruction is the later ESP32 BLE replacement plus lights, retaining the original V3 dispensing controller. The complete merged baseline is still being identified. See the [bridge recovery checkpoint](docs/evidence/bridge-recovery.md).
 
 **Current stage — evidence review and assembly planning.** The original source and historical build records are recovered. Several physical connections still require verification before an assembly can be approved for power-up.
 
@@ -22,7 +24,7 @@ A shared workshop guide for reconstructing the March 2026 v1_13 status-lighting 
 | `docs/evidence/` | Research audits and provenance |
 | `.github/ISSUE_TEMPLATE/` | Structured questions and bench reports |
 
-The guide describes passive monitoring and LED indication. Firmware changes should be proposed separately with their reason and test results. The original v1_13 hash is recorded in [provenance](docs/provenance.md).
+The existing wiring, software, behavior and verification pages describe the historical v1_13 passive-monitoring setup; they are not instructions for the later BLE replacement. Firmware changes should be proposed separately with their reason and test results. The original v1_13 hash is recorded in [provenance](docs/provenance.md).
 
 ## Working together
 
