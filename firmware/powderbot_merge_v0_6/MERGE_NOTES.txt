@@ -1,0 +1,19 @@
+# powderbot_merge_v0_3 notes
+
+This is the first real merge skeleton, not the final merged machine.
+
+What it does now:
+- Keeps the known-good `powderbot_comms_v1_2` bridge behavior and Bart's-board pin map.
+- Adds comms callbacks so BLE connect/disconnect, parsed app commands, and parsed scale samples can drive core logic.
+- Keeps `powderbot_engine`, `powderbot_presentation`, and `powderbot_strip_renderer` as separate donor modules.
+- Uses a thin `powderbot_merge_adapter` seam to keep transport ownership out of the engine.
+
+What it intentionally does **not** do yet:
+- It does not move machine-control replies/status generation into the adapter.
+- It does not take ownership of run_throw / run_trickler / stop_trickler / throw_on / throw_off.
+- It does not replace the V3 bridge. App traffic is still forwarded through the comms hub.
+
+Architectural rule for later:
+- Comms stays portable enough to move to the display board.
+- Core stays transport-blind.
+- The adapter stays thin and disposable.

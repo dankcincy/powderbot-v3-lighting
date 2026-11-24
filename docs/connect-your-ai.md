@@ -24,7 +24,7 @@ Choose **Code → Download ZIP** on GitHub and upload the needed Markdown docume
 
 ## A prompt to begin
 
-> Help me reproduce the PowderBot V3 BLE bridge and lighting setup documented in this repository. The complete merged baseline is still being recovered; the packaged v1_13 sketch is an earlier passive-lighting reference. Read AGENTS.md and the guide first. Explain one step at a time. Cite project files for wiring claims. Identify unresolved endpoints before giving connection instructions. Treat photographs and bench reports as dated evidence. Ask for clarification when the evidence cannot establish a connection. Help me write a clear GitHub issue with my question and observations.
+> Help me reproduce the PowderBot V3 BLE bridge and lighting setup documented in this repository. The recovered baseline is powderbot_merge_v0_6 with all supporting modules, historically bench-tested on April 5. The compact-board reproduction remains untested; v1_13 is preserved as an earlier passive-lighting reference. Read AGENTS.md and the guide first. Explain one step at a time. Cite project files for wiring claims. Identify unresolved endpoints before giving connection instructions. Treat photographs and bench reports as dated evidence. Ask for clarification when the evidence cannot establish a connection. Help me write a clear GitHub issue with my question and observations.
 
 ## Working with Dan and his assistant
 

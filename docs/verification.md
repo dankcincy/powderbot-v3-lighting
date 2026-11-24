@@ -2,9 +2,9 @@
 
 [Guide home](index.md)
 
-The current work is baseline recovery. No complete bridge-plus-lights package has yet been selected or newly bench-tested.
+**Baseline recovery is complete: v0.6 is packaged unchanged and supported by April 5 historical bench reports.** Archive/source hash comparisons were performed during recovery. A new compile, upload, electrical measurement or compact-board bench test has not been performed.
 
-1. **Identify the baseline.** Trace the bridge and merge revisions, match available upload logs and reports, and record source hashes. Do not infer the sketch from a photo or folder timestamp alone.
+1. **Confirm package identity.** Use the complete v0.6 folder and its SHA-256 manifest. Read the [recovery evidence](evidence/merge-v0_6-recovery.md). Do not substitute the earlier passive sketch or infer running firmware from a photo alone.
 2. **Define the assembly.** Identify the ESP32, V3 interface, converter, strip and supplies. Record the selected firmware's GPIO map and every physical endpoint.
 3. **Review wiring with power disconnected.** Establish continuity, voltage compatibility and ground references. Resolve the open items in [wiring](wiring.md).
 4. **Compile the complete package.** Record dependencies, board settings and full output. Keep original source intact.

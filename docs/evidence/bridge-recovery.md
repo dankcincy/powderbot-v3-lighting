@@ -2,6 +2,8 @@
 
 [Guide home](../index.md)
 
+**Historical checkpoint:** the baseline-selection questions below were resolved by the [November 23 v0.6 recovery](merge-v0_6-recovery.md). This dated record is retained; its open-item list is not the current build status.
+
 ## Decision and scope correction
 
 Dan clarified that the setup to reproduce for Leoš is the later ESP32 replacement for the V3 stock BLE adapter, combined with scale observation and status lights. The original V3 remains the dispensing controller. A smaller ESP32 without a display is the intended destination; a specific replacement board has not been selected.
