@@ -2,10 +2,11 @@
 
 [Guide home](index.md)
 
-Updated November 22, 2026 from recovered source, historical reports and dated photo observations. The current target is the later BLE bridge plus lighting; v1_13 remains the preserved earlier reference.
+Updated November 23, 2026 from recovered source, historical reports and dated photo observations. The current target is the later BLE bridge plus lighting; v1_13 remains the preserved earlier reference.
 
 | Record | What it supports |
 | --- | --- |
+| [v0.6 baseline recovery](evidence/merge-v0_6-recovery.md) | Selected complete baseline, April 5 reports, source hashes and boundary from independent motion |
 | [Bridge recovery checkpoint](evidence/bridge-recovery.md) | November 22 scope correction, BLE source transition, photo anchors and next investigation |
 | [Source audit](evidence/source-audit.md) | Exact code behavior and v1.8 through v1.13 changes |
 | [Build and upload provenance](evidence/build-provenance.md) | Recovered cache, tool settings and March 26 IDE upload records |

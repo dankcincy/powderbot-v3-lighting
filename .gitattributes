@@ -1,3 +1,4 @@
 *.ino -text
 *.md text eol=lf
 *.yml text eol=lf
+firmware/powderbot_merge_v0_6/* -text

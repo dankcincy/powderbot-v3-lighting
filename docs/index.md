@@ -6,13 +6,15 @@ The goal is to reproduce the ESP32 bridge and status lights for Leoš and other 
 
 - **Phone app ↔ ESP32 BLE ↔ V3 UART:** the ESP32 takes the place of the stock BLE adapter, forwarding commands and replies.
 - **Scale → RS-232 converter → ESP32:** the ESP32 observes scale readings for lighting decisions. The inspected communications configurations leave scale control passive.
-- **ESP32 → LED strip:** the lighting code indicates connection, target and result states. The exact merged revision and its behavior remain under review.
+- **ESP32 → LED strip:** the lighting code indicates connection, target and result states. The selected revision is `powderbot_merge_v0_6`, with its complete supporting modules.
 
 The standalone bridge advertises as BT05 using service FFE0 and characteristic FFE1. The source sequence and precise file references are in the [recovery checkpoint](evidence/bridge-recovery.md).
 
 ## Current status
 
-The bridge code and the transition from the ESP32 Max pin mapping to Bart's-board mapping have been recovered. The complete bridge-plus-lights baseline has not yet been selected or newly bench-tested. CrowPanel and broader motor-control experiments are later branches to distinguish from this reproduction.
+The complete bridge-plus-lights baseline is recovered and packaged: **powderbot_merge_v0_6**. April 5 reports document its working visual refinements and explicitly defer motor integration. Moving to Bart's board did not itself replace the V3 dispensing controller. See the [baseline and split evidence](evidence/merge-v0_6-recovery.md).
+
+No new compile, upload or compact-board bench test has been performed. The original hardware reports and current source inspection are separate evidence.
 
 | Topic | Reference |
 | --- | --- |
@@ -25,6 +27,6 @@ The bridge code and the transition from the ESP32 Max pin mapping to Bart's-boar
 | Evidence standards and source identity | [Provenance](provenance.md) |
 | Working with your own assistant | [Connect your AI](connect-your-ai.md) |
 
-The only firmware currently packaged in this repository is the preserved v1_13 passive-lighting sketch. It listens to the stock BLE module; it cannot replace that module.
+Both the complete v0.6 baseline and the earlier v1_13 passive-lighting sketch are preserved here. v1_13 listens to the stock BLE module; it cannot replace that module.
 
 [Ask a question or submit a bench report](https://github.com/dankcincy/powderbot-v3-lighting/issues/new/choose). Identify the hardware and firmware revision so evidence from different stages is not mixed.

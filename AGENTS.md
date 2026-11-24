@@ -2,7 +2,7 @@
 
 Read README.md, docs/wiring.md and docs/provenance.md before giving hardware advice.
 
-- Preserve the original v1_13 bytes and SHA-256. Propose edits in a separately named sketch directory.
+- The selected reproduction baseline is powderbot_merge_v0_6 with all supporting files. Preserve its original bytes and SHA-256 manifest, as well as the historical v1_13 bytes and SHA-256. Propose edits in a separately named sketch directory.
 - Cite actual source files and lines when describing code behavior.
 - Distinguish code configuration, historical documentary claims, visual observations and measured results.
 - Keep unresolved wiring items explicit. Wire colors and software pin assignments do not prove physical continuity or voltage compatibility.

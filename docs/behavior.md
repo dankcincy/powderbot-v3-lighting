@@ -2,19 +2,32 @@
 
 [Guide home](index.md)
 
-The reproduction combines bridge events and observed scale readings with status lighting. The first merge skeleton includes separate engine, presentation and NeoPixel-rendering modules, connected to communications callbacks for BLE connection changes, parsed app commands and scale samples. See [source references](evidence/bridge-recovery.md#inspected-source-sequence).
+The selected build is **powderbot_merge_v0_6**. Its communications events feed a separate engine, presentation state machine and NeoPixel renderer. The V3 continues dispensing; lighting verdicts do not control its motors.
 
-The exact animation sequence, result thresholds, timing and disconnect behavior of the selected merged build still need to be verified. The standalone BLE bridge does not itself drive the lights.
+## Historically reported working refinements
 
-## Behavior to establish in the merged baseline
+The April 5 merge reports document:
 
-- Startup, BLE connection and disconnection indications.
-- Target receipt and repeated-target handling.
-- Running indication and stable-reading requirements.
-- Within-tolerance and outside-tolerance results, including later verdict changes.
-- Cup removal, re-arming and stop behavior.
-- Stale or missing scale data and reconnect behavior.
+- Center-out result reveal, with color carrying the result.
+- Outside-in collapse for cup removal/reset.
+- Result animations retained until completion before the hold state takes over.
+- A visual-only verdict flip delay tuned to **500 ms**.
+- Full-show and boomer modes, with serial controls for show mode, tolerances and visual delay.
 
-The original V3 remains responsible for dispensing. An LED result is an indication calculated by the selected lighting code; its criteria must be checked against that revision.
+The recovered source has 500 ms in both `powderbot_merge_config.h:32` and `powderbot_presentation.h:37`. Default under/over tolerances are each 0.02 grains (`powderbot_merge_config.h:28–29`). These are lighting-engine settings, not V3 dispensing settings. [Evidence and source links](evidence/merge-v0_6-recovery.md).
 
-The earlier v1_13 effects and numerical rules are preserved in the [historical reference](v1_13-reference.md). They are useful comparison evidence, but are not assumed to describe the later merged firmware unchanged.
+## Runtime controls
+
+| Commands | Purpose |
+| --- | --- |
+| `vf` / `full`, `vb` / `boomer`, `vs` / `show` | Set or inspect show mode |
+| `vt` / `tol`, `tu <value>`, `to <value>`, `tb <under> <over>` | Inspect or adjust lighting tolerances |
+| `vd`, `vd <ms>`, `vv` / `vstate` | Inspect or adjust visual verdict filtering |
+
+The preserved sketch's opening usage notes describe these commands. Do not assume runtime adjustments persist across reset.
+
+## Reproduction checks still required
+
+Test startup, BLE wake/disconnect/reconnect, target receipt, repeated targets, run indication, stable-reading decisions, verdict changes, stop, cup removal and stale/missing scale data on the exact new assembly. Historical reports are not fresh tests of these cases.
+
+The earlier [v1_13 effects](v1_13-reference.md) remain comparison evidence; do not assume every numerical rule carried forward unchanged.
